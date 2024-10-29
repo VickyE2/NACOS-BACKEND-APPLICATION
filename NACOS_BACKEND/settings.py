@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Login',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'NACOS_BACKEND-.urls'
+ROOT_URLCONF = 'NACOS_BACKEND.urls'
 
 TEMPLATES = [
     {
@@ -67,8 +68,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'NACOS_BACKEND-.wsgi.application'
+WSGI_APPLICATION = 'NACOS_BACKEND.wsgi.application'
 
+AUTH_USER_MODEL = 'Login.BaseUser'
+
+AUTHENTICATION_BACKENDS = [
+    'Login.backends.EmailModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -116,6 +123,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
