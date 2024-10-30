@@ -215,3 +215,18 @@ p.s : the label with id: "checkbox" is just to style where the remember_me is...
 where the `form.remember_me` is the element `remember_me = forms.BooleanField(...` the label being `form.rememberme.label`
 
 I think that covers everything about how to use it with the front end....
+
+to visit the website, you'll run this command in the python shell: `python manage.py runserver` and visit the gemerated ip adress (usually ``http://127.0.0.1:8000/)
+
+[It's Optional]
+So for a sign up screen you'll need these elements:
+
+- First name and last name fields
+- A Username field
+- An Email field
+- Two password fields (password and confirm_password)
+
+You sould si=till use the `{{ form.email }}`...etc to place it and for password its `{{ password1 }}` and for the confirm `{{ password2 }}`
+for first name `{{ first_name }}` and last name `{{ last_name }}`
+
+to visit it you'd go to the generated ip and `/signup/` for the userlist that was included you'd use `/users/`
