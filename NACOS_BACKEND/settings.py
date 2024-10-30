@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'NACOS_BACKEND.wsgi.application'
 AUTH_USER_MODEL = 'Login.BaseUser'
 
 AUTHENTICATION_BACKENDS = [
-    'Login.backends.EmailModelBackend',
+    'Login.backends.UsernameAuthentication',
     'django.contrib.auth.backends.ModelBackend',
 ]
 

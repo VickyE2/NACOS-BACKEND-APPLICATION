@@ -1,5 +1,3 @@
-from tkinter.constants import BASELINE
-
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
@@ -11,28 +9,27 @@ def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
+            username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             remember_me = form.cleaned_data.get('remember_me')
 
-            user = authenticate(email=email, password=password)
+            user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
 
-                # a simple code to add a token to make the user signed in cuz of remember me
+                # Set the session expiry based on the "Remember Me" checkbox
                 if remember_me:
-                    request.session.set_expiry(1209600) # this is for... 2 weeks... 1209600 seconds
+                    request.session.set_expiry(1209600)  # 2 weeks
                 else:
-                    request.session.set_expiry(0)
+                    request.session.set_expiry(0)  # Session expires when the browser closes
 
-                return redirect('profile')  # Redirect to a profile page maybe?
+                return redirect('...')  # Redirect after successful login
             else:
                 # Handle invalid login attempt
                 form.add_error(None, "Invalid username or password.")
     else:
         form = LoginForm()
 
-    # the login.html is the html file :)
     return render(request, 'login.html', {'form': form})
 
 def signup(request):
@@ -52,7 +49,7 @@ def signup(request):
     else:
         form = RegistrationForm()  # Create an empty form for GET requests
 
-    return render(request, 'sign_up.html', {'form': form})  # Pass the form back to the template
+    return render(request, 'sign_up.html', {'form': form}) # Pass the form back to the template
 
 def user_list(request):
     # Query all users

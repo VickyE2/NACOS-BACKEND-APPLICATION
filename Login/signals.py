@@ -4,10 +4,9 @@ from django.contrib.auth.models import User
 from .models import BaseUser
 
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
+def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         BaseUser.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
+    else:
+        base_user, created = BaseUser.objects.get_or_create(user=instance)
+        base_user.save()
