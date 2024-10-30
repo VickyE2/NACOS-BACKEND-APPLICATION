@@ -226,7 +226,7 @@ So for a sign up screen you'll need these elements:
 - An Email field
 - Two password fields (password and confirm_password)
 
-You sould si=till use the `{{ form.email }}`...etc to place it and for password its `{{ password1 }}` and for the confirm `{{ password2 }}`
+You should still use the `{{ form.email }}`...etc to place it the name for password is `{{ password1 }}` and for the confirm `{{ password2 }}`
 for first name `{{ first_name }}` and last name `{{ last_name }}`
 
 to visit it you'd go to the generated ip and `/signup/` for the userlist that was included you'd use `/users/`
